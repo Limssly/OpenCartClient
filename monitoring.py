@@ -9,11 +9,21 @@ config = {
 }
 
 # Fonction pour capturer et afficher les requêtes SQL
+# def execute_and_log_query(query, args=None):
+#     try:
+#         print("Executing query:", query)
+#         cursor.execute(query, args)
+#         connection.commit()
+#     except mysql.connector.Error as e:
+#         print('Erreur execution de la requête:', e)
+
+# Fonction pour capturer et enregistrer les requêtes SQL dans un fichier journal
 def execute_and_log_query(query, args=None):
     try:
-        print("Executing query:", query)
-        cursor.execute(query, args)
-        connection.commit()
+        with open('query_log.txt', 'a') as log_file:
+            log_file.write("Executing query: {}\n".format(query))
+            cursor.execute(query, args)
+            connection.commit()
     except mysql.connector.Error as e:
         print('Erreur execution de la requête:', e)
 
