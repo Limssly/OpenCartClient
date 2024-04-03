@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 from monitoring import connect_to_database
 
 def afficher_produits():
@@ -75,40 +74,19 @@ root = tk.Tk()
 root.title("MonitoringApp")
 root.config(bg='blue')
 
-notebook = ttk.Notebook(root)
+b1 = tk.Button(root, text="Produits", command=afficher_produits, bg='white', fg='blue')
+b1.grid(row=0, column=0)
 
-# Crée un Frame pour chaque onglet
-tab1 = ttk.Frame(notebook)
-tab2 = ttk.Frame(notebook)
-tab3 = ttk.Frame(notebook)
-tab4 = ttk.Frame(notebook)
+b2 = tk.Button(root, text="Administrateurs", command=afficher_utilisateurs, bg='white', fg='blue')
+b2.grid(row=0, column=1)
 
-notebook.add(tab1, text='Produits')
-notebook.add(tab2, text='Administrateurs')
-notebook.add(tab3, text='Utilisateurs Connectés')
-notebook.add(tab4, text='Transactions')
+b3 = tk.Button(root, text="Utilisateurs Connectés", command=afficher_utilisateurs_connectes, bg='white', fg='blue')
+b3.grid(row=0, column=2)
 
-notebook.pack(expand=1, fill='both')
+b4 = tk.Button(root, text="Transactions", command=afficher_transactions, bg='white', fg='blue')
+b4.grid(row=0, column=3)
 
-# Ajoute les boutons spécifiques à chaque onglet
-b1 = tk.Button(tab1, text="Produits", command=afficher_produits, bg='white', fg='blue')
-b1.pack()
-text_box = tk.Text(tab1, height=10, width=40)
-text_box.pack()
-
-b2 = tk.Button(tab2, text="Administrateurs", command=afficher_utilisateurs, bg='white', fg='blue')
-b2.pack()
-text_box = tk.Text(tab2, height=10, width=40)
-text_box.pack()
-
-b3 = tk.Button(tab3, text="Utilisateurs Connectés", command=afficher_utilisateurs_connectes, bg='white', fg='blue')
-b3.pack()
-text_box = tk.Text(tab3, height=10, width=40)
-text_box.pack()
-
-b4 = tk.Button(tab4, text="Transactions", command=afficher_transactions, bg='white', fg='blue')
-b4.pack()
-text_box = tk.Text(tab4, height=10, width=40)
-text_box.pack()
+text_box = tk.Text(root, width=150, height=30)
+text_box.grid(row=1, column=0, columnspan=4)
 
 root.mainloop()
